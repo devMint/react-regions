@@ -36,8 +36,8 @@
     "ts-jest": "^26.0.0",
     "typescript": "^3.9.2"
   },
-  "publishConfig": {
-    "@devmint:registry": "https://gitlab.com/api/v4/projects/18816882/packages/npm/"
+  "publishConfig": { 
+    "registry": "https://npm.pkg.github.com/" 
   },
   "repository": {
     "type": "git",
