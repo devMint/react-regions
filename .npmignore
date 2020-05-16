@@ -1,0 +1,11 @@
+logo.png
+logo-avatar.png
+src/
+tests/
+jest.config.js
+jest.setup.js
+tsconfig.json
+.eslintrc
+.gitlab-ci.yml
+.prettierrc
+coverage
