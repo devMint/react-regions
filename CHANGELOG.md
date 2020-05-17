@@ -1,3 +1,6 @@
+## 1.0.2
+* fixed CI for building and publishing package
+
 ## 1.0.1
 * valid `package.json` (migration from GitLab to GitHub)
 
