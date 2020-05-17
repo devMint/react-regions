@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://gitlab.com/grzgajda/react-regions/raw/master/logo.png" alt="React Regions" />
+    <img src="logo.png" alt="React Regions" />
 </div>
 
 <div align="center">
@@ -10,8 +10,9 @@
 
 <div align="center">
   <img src="https://img.shields.io/badge/LANG-TypeScript-%232b7489.svg?style=for-the-badge" />
-  <img src="https://img.shields.io/gitlab/pipeline/grzgajda/grzgajda.gitlab.io.svg?logo=gitlab&style=for-the-badge" />
-  <img src="https://img.shields.io/badge/coverage-100%25-brightgreen.svg?logo=gitlab&style=for-the-badge" />
+  <img src="https://img.shields.io/github/workflow/status/devmint/react-regions/Package Build?label=Package%20Build&style=for-the-badge" />
+  <img src="https://img.shields.io/github/workflow/status/devmint/react-regions/Package Quality?label=Package%20Quality&style=for-the-badge" />
+  <img src="https://img.shields.io/github/v/release/devmint/react-regions?style=for-the-badge" />
 </div>
 
 <br />

@@ -60,9 +60,14 @@ describe('RegionProvider and Region', () => {
   })
 
   it('should allow to render dynamic component', () => {
-    const asyncComponent = React.lazy(() => import('./ExampleComponent'))
+    const AsyncComponent = React.lazy(() => import('./ExampleComponent'))
+    const suspenseWrapper = () => (
+      <React.Suspense fallback={'...'}>
+        <AsyncComponent />
+      </React.Suspense>
+    )
     const registry = new RegionRegistry()
-    registry.register('example', asyncComponent)
+    registry.register('example', suspenseWrapper)
 
     const { getByText } = render(
       <RegionProvider registry={registry}>
@@ -71,5 +76,25 @@ describe('RegionProvider and Region', () => {
     )
 
     waitFor(() => getByText('Lorem ipsum'))
+  })
+
+  it('should allow to pass props to dynamic component', () => {
+    const AsyncComponent = React.lazy(() => import('./ExampleComponent'))
+    const suspenseWrapper = ({ title }: any) => (
+      <React.Suspense fallback={'...'}>
+        <p>{title}</p>
+        <AsyncComponent />
+      </React.Suspense>
+    )
+    const registry = new RegionRegistry()
+    registry.register('example', suspenseWrapper)
+
+    const { getByText } = render(
+      <RegionProvider registry={registry}>
+        <Region region={'example'} title={'Dolor sit amet'} />
+      </RegionProvider>,
+    )
+
+    waitFor(() => getByText('Dolor sit amet'))
   })
 })

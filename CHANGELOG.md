@@ -1,3 +1,6 @@
+## 1.1.0
+* removed builtin support for `<React.Suspnse />` and `React.lazy`
+
 ## 1.0.2
 * fixed CI for building and publishing package
 

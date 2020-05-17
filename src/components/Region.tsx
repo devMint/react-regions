@@ -3,12 +3,11 @@ import { RegionContext } from './RegionContext'
 
 interface RegionProps {
   region: string
-  fallback?: React.ComponentType<unknown> | null
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any
 }
 
-export const Region = ({ region, fallback = null, ...rest }: RegionProps) => {
+export const Region = ({ region, ...rest }: RegionProps) => {
   const registry = React.useContext(RegionContext)
   const [counter, update] = React.useState(0)
 
@@ -19,11 +18,7 @@ export const Region = ({ region, fallback = null, ...rest }: RegionProps) => {
   try {
     const C = registry.load(region)
 
-    return (
-      <React.Suspense fallback={fallback}>
-        <C {...rest} />
-      </React.Suspense>
-    )
+    return <C {...rest} />
   } catch (e) {
     return null
   }
