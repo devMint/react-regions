@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  'Code quality':
+  Code quality:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
           node-version: '12'
       - run: npm ci
       - run: npm run lint
-  'Unit testing':
+  Unit testing:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v2
