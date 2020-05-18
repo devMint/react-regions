@@ -8,13 +8,6 @@
     <br />
 </div>
 
-<div align="center">
-  <img src="https://img.shields.io/badge/LANG-TypeScript-%232b7489.svg?style=for-the-badge" />
-</div>
-
-<br />
-<br />
-
 ## Installation
 
 Before you start installing package you need to authorize to GitHub's npm. To learn more read _[Configuring npm for use with GitHub Packages](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages)_.
