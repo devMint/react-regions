@@ -1,5 +1,9 @@
+## 1.1.1
+* updated dependencies (`@typescript-eslint/eslint-plugin` and `@typescript-eslint/parser`)
+* written documentation in `README.md` file
+
 ## 1.1.0
-* removed builtin support for `<React.Suspnse />` and `React.lazy`
+* removed builtin support for `<React.Suspense />` and `React.lazy`
 
 ## 1.0.2
 * fixed CI for building and publishing package
