@@ -72,7 +72,7 @@ It's possible to register dynamic components using builtin methods of React, e.g
 ```jsx
 import React, { Suspense, lazy } from 'react'
 
-const LazyComponent = React.lazy(import('../path/to/our/component'))
+const LazyComponent = React.lazy(() => import('../path/to/our/component'))
 const AsyncComponent = () => (
   <Suspense fallback={<p>Loading...</p>}>
     <LazyComponent />
