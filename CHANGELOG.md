@@ -1,3 +1,6 @@
+## 1.2.0
+* prevent circular reference for regions
+
 ## 1.1.1
 * updated dependencies (`@typescript-eslint/eslint-plugin` and `@typescript-eslint/parser`)
 * written documentation in `README.md` file

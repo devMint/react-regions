@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { RegionContext } from './RegionContext'
+import { RegionContext, RegionFragmentContext } from './RegionContext'
+import { RegionFragment } from './RegionFragment'
+import { CircularReferenceDetected } from '../errors/CircularReferenceDetected'
 
 interface RegionProps {
   region: string
@@ -9,6 +11,7 @@ interface RegionProps {
 
 export const Region = ({ region, ...rest }: RegionProps) => {
   const registry = React.useContext(RegionContext)
+  const regionName = React.useContext(RegionFragmentContext)
   const [counter, update] = React.useState(0)
 
   React.useEffect(() => {
@@ -17,8 +20,15 @@ export const Region = ({ region, ...rest }: RegionProps) => {
 
   try {
     const C = registry.load(region)
+    if (region === regionName) {
+      throw new CircularReferenceDetected(region)
+    }
 
-    return <C {...rest} />
+    return (
+      <RegionFragment regionName={region}>
+        <C {...rest} />
+      </RegionFragment>
+    )
   } catch (e) {
     return null
   }

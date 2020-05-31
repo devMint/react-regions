@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react'
 import { Region, RegionProvider, RegionRegistry } from '../../src'
+import NestedComponent from './NestedComponent'
 
 describe('RegionProvider and Region', () => {
   it('should render registered region', () => {
@@ -59,42 +60,73 @@ describe('RegionProvider and Region', () => {
     )
   })
 
-  it('should allow to render dynamic component', () => {
-    const AsyncComponent = React.lazy(() => import('./ExampleComponent'))
-    const suspenseWrapper = () => (
-      <React.Suspense fallback={'...'}>
-        <AsyncComponent />
-      </React.Suspense>
-    )
-    const registry = new RegionRegistry()
-    registry.register('example', suspenseWrapper)
+  describe('asynchronous loading', () => {
+    it('should allow to render dynamic component', () => {
+      const AsyncComponent = React.lazy(() => import('./ExampleComponent'))
+      const suspenseWrapper = () => (
+        <React.Suspense fallback={'...'}>
+          <AsyncComponent />
+        </React.Suspense>
+      )
+      const registry = new RegionRegistry()
+      registry.register('example', suspenseWrapper)
 
-    const { getByText } = render(
-      <RegionProvider registry={registry}>
-        <Region region={'example'} />
-      </RegionProvider>,
-    )
+      const { getByText } = render(
+        <RegionProvider registry={registry}>
+          <Region region={'example'} />
+        </RegionProvider>,
+      )
 
-    waitFor(() => getByText('Lorem ipsum'))
+      waitFor(() => getByText('Lorem ipsum'))
+    })
+
+    it('should allow to pass props to dynamic component', () => {
+      const AsyncComponent = React.lazy(() => import('./ExampleComponent'))
+      const suspenseWrapper = ({ title }: { title: string }) => (
+        <React.Suspense fallback={'...'}>
+          <p>{title}</p>
+          <AsyncComponent />
+        </React.Suspense>
+      )
+      const registry = new RegionRegistry()
+      registry.register('example', suspenseWrapper)
+
+      const { getByText } = render(
+        <RegionProvider registry={registry}>
+          <Region region={'example'} title={'Dolor sit amet'} />
+        </RegionProvider>,
+      )
+
+      waitFor(() => getByText('Dolor sit amet'))
+    })
   })
 
-  it('should allow to pass props to dynamic component', () => {
-    const AsyncComponent = React.lazy(() => import('./ExampleComponent'))
-    const suspenseWrapper = ({ title }: any) => (
-      <React.Suspense fallback={'...'}>
-        <p>{title}</p>
-        <AsyncComponent />
-      </React.Suspense>
-    )
-    const registry = new RegionRegistry()
-    registry.register('example', suspenseWrapper)
+  describe('nesting regions', () => {
+    it('should allow to render nested regions', () => {
+      const registry = new RegionRegistry()
+      registry.register('lorem', NestedComponent)
+      registry.register('ipsum', () => <p>Random text</p>)
 
-    const { getByText } = render(
-      <RegionProvider registry={registry}>
-        <Region region={'example'} title={'Dolor sit amet'} />
-      </RegionProvider>,
-    )
+      const { getByText } = render(
+        <RegionProvider registry={registry}>
+          <Region region={'lorem'} regionName={'ipsum'} />
+        </RegionProvider>,
+      )
 
-    waitFor(() => getByText('Dolor sit amet'))
+      expect(() => getByText('Random text')).not.toThrow()
+    })
+
+    it('should prevent circular reference of loading region in same region', () => {
+      const registry = new RegionRegistry()
+      registry.register('lorem', NestedComponent)
+
+      const { getAllByText } = render(
+        <RegionProvider registry={registry}>
+          <Region region={'lorem'} regionName={'lorem'} />
+        </RegionProvider>,
+      )
+
+      expect(getAllByText('Dolor sit amet')).toHaveLength(1)
+    })
   })
 })
