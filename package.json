@@ -1,7 +1,7 @@
 {
   "name": "@devmint/react-regions",
-  "version": "1.3.0",
-  "description": "React utility to create 'dynamic' regions in template",
+  "version": "1.4.0",
+  "description": "Small Javascript package for managing regions on template using \"regions\" or \"blocks\". Idea is copied from template engines like Twig or Handlebars.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "devMint <grz.gajda@outlook.com>",
@@ -11,10 +11,11 @@
     "test:watch": "jest --watch --verbose",
     "test:coverage": "jest --coverage",
     "prebuild": "rimraf dist",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
-  "license": "ISC",
-  "dependencies": {
+  "license": "GPLv3",
+  "peerDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -34,7 +35,9 @@
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

@@ -9,7 +9,7 @@ interface RegionProps {
   [k: string]: any
 }
 
-export const Region = ({ region, ...rest }: RegionProps): JSX.Element | null => {
+const NotMemoizedRegion = ({ region, ...rest }: RegionProps): JSX.Element | null => {
   const registry = React.useContext(RegionContext)
   const regionName = React.useContext(RegionFragmentContext)
   const [counter, update] = React.useState(0)
@@ -33,3 +33,5 @@ export const Region = ({ region, ...rest }: RegionProps): JSX.Element | null => 
     return null
   }
 }
+
+export const Region = React.memo(NotMemoizedRegion)

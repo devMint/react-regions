@@ -4,11 +4,25 @@ export enum EventType {
 }
 
 export class Event {
-  type: EventType
-  region: string
+  constructor(private readonly type: EventType, private readonly region: string) {}
 
-  constructor(type: EventType, region: string) {
-    this.type = type
-    this.region = region
+  getType(): EventType {
+    return this.type
+  }
+
+  getRegion(): string {
+    return this.region
+  }
+}
+
+export class RegionRegisteredEvent extends Event {
+  constructor(region: string) {
+    super(EventType.REGISTERED, region)
+  }
+}
+
+export class RegionUnregisteredEvent extends Event {
+  constructor(region: string) {
+    super(EventType.UNREGISTERED, region)
   }
 }

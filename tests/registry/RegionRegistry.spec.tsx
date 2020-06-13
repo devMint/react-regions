@@ -41,7 +41,7 @@ describe('RegionRegistry', () => {
 
   it('should dispatch actions with event', (done) => {
     const listener = jest.fn().mockImplementationOnce((event: Event) => {
-      expect(event.type).toEqual(EventType.REGISTERED)
+      expect(event.getType()).toEqual(EventType.REGISTERED)
       done()
     })
 
@@ -68,8 +68,8 @@ describe('RegionRegistry', () => {
 
     it('should dispatch event on "REGISTER" action', (done) => {
       const listener = jest.fn().mockImplementationOnce((event: Event) => {
-        expect(event.type).toEqual(EventType.REGISTERED)
-        expect(event.region).toEqual('header')
+        expect(event.getType()).toEqual(EventType.REGISTERED)
+        expect(event.getRegion()).toEqual('header')
         done()
       })
 
@@ -79,8 +79,8 @@ describe('RegionRegistry', () => {
 
     it('should dispatch event on "UNREGISTER" action', (done) => {
       const listener = jest.fn().mockImplementation((event: Event) => {
-        expect(event.type).toEqual(EventType.UNREGISTERED)
-        expect(event.region).toEqual('header')
+        expect(event.getType()).toEqual(EventType.UNREGISTERED)
+        expect(event.getRegion()).toEqual('header')
         done()
       })
 

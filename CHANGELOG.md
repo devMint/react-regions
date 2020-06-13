@@ -1,3 +1,14 @@
+## 1.4.0
+* refactored events with almost 100% backward compatibility:
+* * `RegionRegisteredEvent`
+* * `RegionUnregisteredEvent`
+* attributes of these events are not publicly accessible
+* new methods: `getType()` and `getRegion()`
+
+## 1.3.1
+* changed license to **GPLv3**
+* moved `react` and `react-dom` from dependencies to peerDependencies
+
 ## 1.3.0
 * updated dependencies (minor versions)
 * allow to listen for all events when RegExp is passed as argument to `listen()` method

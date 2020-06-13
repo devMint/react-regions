@@ -5,4 +5,9 @@ export { RegionNotRegistered } from './errors/RegionNotRegistered'
 export { CircularReferenceDetected } from './errors/CircularReferenceDetected'
 
 export { RegionRegistry } from './registry/RegionRegistry'
-export { EventType, Event } from './registry/RegistryEvent'
+export {
+  EventType,
+  Event,
+  RegionRegisteredEvent,
+  RegionUnregisteredEvent,
+} from './registry/RegistryEvent'
