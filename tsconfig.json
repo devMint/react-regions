@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "lib": ["ES2019", "DOM"],
     "module": "CommonJS",
-    "target": "ESNext",
-    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "target": "ES2019",
+    "outDir": "dist",
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",

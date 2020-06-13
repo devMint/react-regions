@@ -1,3 +1,7 @@
+## 1.4.1
+* changed config for `tsconfig.json`
+* replaced `ESNext` with `ES2019`
+
 ## 1.4.0
 * refactored events with almost 100% backward compatibility:
 * * `RegionRegisteredEvent`
