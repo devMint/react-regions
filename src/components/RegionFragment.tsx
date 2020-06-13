@@ -6,7 +6,7 @@ interface RegionFragmentProps {
   regionName: string
 }
 
-export function RegionFragment({ children, regionName }: RegionFragmentProps) {
+export function RegionFragment({ children, regionName }: RegionFragmentProps): JSX.Element {
   return (
     <RegionFragmentContext.Provider value={regionName}>{children}</RegionFragmentContext.Provider>
   )

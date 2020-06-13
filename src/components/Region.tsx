@@ -9,7 +9,7 @@ interface RegionProps {
   [k: string]: any
 }
 
-export const Region = ({ region, ...rest }: RegionProps) => {
+export const Region = ({ region, ...rest }: RegionProps): JSX.Element | null => {
   const registry = React.useContext(RegionContext)
   const regionName = React.useContext(RegionFragmentContext)
   const [counter, update] = React.useState(0)

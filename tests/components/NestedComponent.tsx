@@ -5,7 +5,7 @@ interface NestedComponentProps {
   regionName: string
 }
 
-export function NestedComponent({ regionName, ...props }: NestedComponentProps) {
+export function NestedComponent({ regionName, ...props }: NestedComponentProps): JSX.Element {
   return (
     <>
       <p>Dolor sit amet</p>

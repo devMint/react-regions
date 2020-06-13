@@ -1,3 +1,7 @@
+## 1.3.0
+* updated dependencies (minor versions)
+* allow to listen for all events when RegExp is passed as argument to `listen()` method
+
 ## 1.2.0
 * prevent circular reference for regions
 

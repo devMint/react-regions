@@ -5,31 +5,38 @@ import { Event, EventType } from './RegistryEvent'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ReactComponent = ComponentType<any>
 type ListenerCallback = (event: Event) => void
+type RegionName = string | RegExp
+type ListenerConfiguration = {
+  listener: ListenerCallback
+  region: RegionName
+  token: string
+}
 
 export class RegionRegistry {
   private readonly regions: Record<string, ReactComponent> = {}
-  private readonly callbacks: Record<string, Record<string, ListenerCallback>> = {}
+  private callbacks: ListenerConfiguration[]
+
+  constructor() {
+    this.regions = {}
+    this.callbacks = []
+  }
 
   register(region: string, component: ReactComponent): void {
     this.regions[region] = component
+    const event = new Event(EventType.REGISTERED, region)
 
-    if (region in this.callbacks) {
-      const event = new Event(EventType.REGISTERED, region)
-      Object.keys(this.callbacks[region]).forEach((key) => {
-        this.callbacks[region][key](event)
-      })
-    }
+    this.getCallbacks(region).forEach(({ listener }) => {
+      listener(event)
+    })
   }
 
   unregister(region: string): void {
     delete this.regions[region]
+    const event = new Event(EventType.UNREGISTERED, region)
 
-    if (region in this.callbacks) {
-      const event = new Event(EventType.UNREGISTERED, region)
-      Object.keys(this.callbacks[region]).forEach((key) => {
-        this.callbacks[region][key](event)
-      })
-    }
+    this.getCallbacks(region).forEach(({ listener }) => {
+      listener(event)
+    })
 
     delete this.callbacks[region]
   }
@@ -42,14 +49,23 @@ export class RegionRegistry {
     return this.regions[region]
   }
 
-  listen(region: string, cb: ListenerCallback): () => void {
-    const token = `${region}-${Math.floor(Math.random() * 1000000)}`
-    if (false === region in this.callbacks) {
-      this.callbacks[region] = {}
+  listen(region: RegionName, cb: ListenerCallback): () => void {
+    const config: ListenerConfiguration = {
+      token: `${region.toString()}-${Math.floor(Math.random() * 1000000)}`,
+      listener: cb,
+      region,
     }
 
-    this.callbacks[region][token] = cb
+    this.callbacks = [...this.callbacks, config]
 
-    return () => delete this.callbacks[region][token]
+    return () => {
+      this.callbacks = this.callbacks.filter(({ token }) => token !== config.token)
+    }
+  }
+
+  private getCallbacks(region: string): ListenerConfiguration[] {
+    return this.callbacks.filter((config) => {
+      return config.region instanceof RegExp ? config.region.test(region) : config.region === region
+    })
   }
 }

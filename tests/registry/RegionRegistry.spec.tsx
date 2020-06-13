@@ -97,5 +97,39 @@ describe('RegionRegistry', () => {
 
       expect(() => registry.load('example')).not.toThrow()
     })
+
+    it('should allow to unregister dynamic component', () => {
+      const asyncComponent = React.lazy(() => import('../components/ExampleComponent'))
+      const registry = new RegionRegistry()
+      registry.register('example', asyncComponent)
+      registry.unregister('example')
+
+      expect(() => registry.load('example')).toThrow(RegionNotRegistered)
+    })
+  })
+
+  describe('support for regular expressions', () => {
+    it('should listen for each event starting with "header-"', () => {
+      const listener = jest.fn()
+      const registry = new RegionRegistry()
+
+      registry.listen(/^header-*/, listener)
+      registry.register('header-test', ExampleComponent)
+
+      expect(listener).toHaveBeenCalled()
+    })
+
+    it('should listen for each event', () => {
+      const listener = jest.fn()
+      const registry = new RegionRegistry()
+
+      registry.listen(/([a-z1-9-_])+/, listener)
+      registry.register('header', ExampleComponent)
+      registry.register('footer-simple', ExampleComponent)
+      registry.register('nothing1234', ExampleComponent)
+      registry.register('CamelCase', ExampleComponent)
+
+      expect(listener).toHaveBeenCalledTimes(4)
+    })
   })
 })

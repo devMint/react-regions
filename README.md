@@ -96,4 +96,9 @@ const unlisten = registry.listen('example', (event) => {
 unlisten()
 ```
 
-It's especially helpful to know what regions are registered in our layout without asking registry each time.
+It's especially helpful to know what regions are registered in our layout without asking registry each time. Also it's possible
+to listen for certain regions in single listener using `RegExp` in first argument, e.g.:
+
+```jsx
+const unlisten = registry.listen(/^header-test/, (event) => {})
+```

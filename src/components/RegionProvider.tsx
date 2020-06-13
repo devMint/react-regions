@@ -7,6 +7,6 @@ interface RegionProviderProps {
   registry: RegionRegistry
 }
 
-export function RegionProvider({ children, registry }: RegionProviderProps) {
+export function RegionProvider({ children, registry }: RegionProviderProps): JSX.Element {
   return <RegionContext.Provider value={registry}>{children}</RegionContext.Provider>
 }
