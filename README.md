@@ -13,7 +13,7 @@ npm install @devmint/react-regions
 Install via `package.json`:
 
 ```json
-"@devmint/react-regions": "1.5.0"
+"@devmint/react-regions": "1.5.1"
 ```
 
 **CAUTION**: Installation with `yarn` may lead to some errors due to lack of `yarn.lock` file.

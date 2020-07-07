@@ -1,3 +1,6 @@
+## 1.5.1
+* some upgrade for GitHub Actions
+
 ## 1.5.0
 * updated README
 * updated dependencies
