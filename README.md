@@ -1,12 +1,4 @@
-<div align="center">
-    <img src="logo.png" alt="React Regions" />
-</div>
-
-<div align="center">
-    <strong>Small Javascript package for managing regions on template using "regions" or "blocks". Idea is copied from template engines like Twig or Handlebars.</strong>
-    <br />
-    <br />
-</div>
+Small Javascript package for managing regions on template using "regions" or "blocks". Idea is copied from template engines like Twig or Handlebars.
 
 ## Installation
 
@@ -21,8 +13,10 @@ npm install @devmint/react-regions
 Install via `package.json`:
 
 ```json
-"@devmint/react-regions": "1.1.0"
+"@devmint/react-regions": "1.5.0"
 ```
+
+**CAUTION**: Installation with `yarn` may lead to some errors due to lack of `yarn.lock` file.
 
 ## Usage
 

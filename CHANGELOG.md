@@ -1,3 +1,7 @@
+## 1.5.0
+* updated README
+* updated dependencies
+
 ## 1.4.1
 * changed config for `tsconfig.json`
 * replaced `ESNext` with `ES2019`
