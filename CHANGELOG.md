@@ -1,3 +1,7 @@
+## 1.5.2
+* updated minor versions of dependencies
+* removed 4325 severity vulnerabilities
+
 ## 1.5.1
 * some upgrade for GitHub Actions
 
