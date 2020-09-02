@@ -4,7 +4,7 @@
   "description": "Small Javascript package for managing regions on template using \"regions\" or \"blocks\". Idea is copied from template engines like Twig or Handlebars.",
   "main": "dist/react-regions.js",
   "module": "dist/react-regions.es.js",
-  "types": "dist/react-regions.d.ts",
+  "types": "dist/index.d.ts",
   "author": "devMint <grz.gajda@outlook.com>",
   "scripts": {
     "lint": "eslint 'src/' 'tests/' --ext jsx,js,tsx,ts,json",
