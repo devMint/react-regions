@@ -1,3 +1,6 @@
+## 1.5.3
+* updated dependencies
+
 ## 1.5.2
 * updated minor versions of dependencies
 * removed 4325 severity vulnerabilities
