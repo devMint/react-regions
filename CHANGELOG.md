@@ -1,3 +1,6 @@
+## 1.6.0
+* used Rollup as tool to bundle code
+
 ## 1.5.3
 * updated dependencies
 
