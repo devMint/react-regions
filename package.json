@@ -1,6 +1,6 @@
 {
   "name": "@devmint/react-regions",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Small Javascript package for managing regions on template using \"regions\" or \"blocks\". Idea is copied from template engines like Twig or Handlebars.",
   "main": "dist/react-regions.js",
   "module": "dist/react-regions.es.js",
