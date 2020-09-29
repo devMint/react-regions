@@ -1,5 +1,11 @@
+# Changelog
+## 1.6.1
+* configured GitHub actions precisely
+* updated dependencies
+
 ## 1.6.0
 * used Rollup as tool to bundle code
+* release step for GitHub actions
 
 ## 1.5.3
 * updated dependencies

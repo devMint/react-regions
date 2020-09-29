@@ -1,31 +1,31 @@
-name: Package Build
+name: Build & Deploy
 
 on:
-  release:
-    types: [published]
+  push:
+    tags: 
+     - '*'
 
 jobs:
-  CodeQuality:
-    runs-on: 'ubuntu-latest'
+  CreateRelease:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: scottbrenner/generate-changelog-action@master
+        id: Changelog
+        env:
+          REPO: ${{ github.repository }}
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          node-version: '12'
-      - run: npm ci
-      - run: npm run lint
-  UnitTesting:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-      - run: npm ci
-      - run: npm run test:coverage
+          tag_name: ${{ format(github.ref, 'refs/') }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
   PublishToGitHub:
     runs-on: 'ubuntu-latest'
-    needs: [ CodeQuality, UnitTesting ]
+    needs: [ CreateRelease ]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
